@@ -1,0 +1,131 @@
+# BRSR Regulatory Compliance Tracker
+
+Automated tool to extract, analyse, and score Business Responsibility and Sustainability Reports (BRSR) for compliance.  
+It generates TXT, CSV, and database outputs that can be used for analytics or dashboards (e.g., Power BI).
+
+---
+
+## 📂 Project Structure
+
+```
+BRSR_Regulatory_Compliance_Tracker/
+├── notebooks/                    # Jupyter notebooks
+│   └── Regulatory_Compliance_Tracker.ipynb
+├── scripts/                      # Python automation scripts
+│   └── brsr_automation.py
+├── data/                         # Input/output data
+│   ├── BRSR_Reports/             # Upload your PDF reports here
+│   └── BRSR_Results/             # Output TXT, CSV, ZIP, DB files
+├── exports/                      # CSV exports for Power BI
+│   ├── Company_Reports.csv
+│   ├── Compliance_Scores.csv
+│   └── Regulatory_Updates.csv
+├── brsr_database.db               # SQLite database file
+├── requirements.txt               # Python dependencies
+└── README.md                      # Project overview (this file)
+```
+
+---
+
+## ⚙️ Setup
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/<your-username>/<repo-name>.git
+cd <repo-name>
+```
+
+2. Install dependencies (Python 3.9+ recommended):
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Required system dependencies (for OCR and PDF processing):
+
+```bash
+sudo apt-get update
+sudo apt-get install tesseract-ocr poppler-utils
+```
+
+---
+
+## 📝 Usage
+
+1. **Upload PDF reports** to:
+
+```
+data/BRSR_Reports/
+```
+
+2. **Run the automation script**:
+
+```bash
+python scripts/brsr_automation.py
+```
+
+3. **Outputs are automatically generated** in:
+
+```
+data/BRSR_Results/auto_run_<timestamp>/
+```
+
+Includes:
+- TXT files for extracted text from PDFs  
+- Updated SQLite database (`brsr_database.db`)  
+- CSV exports for Power BI dashboards:
+  - Company_Reports.csv
+  - Compliance_Scores.csv
+  - Regulatory_Updates.csv
+
+---
+
+## 📊 Compliance Scoring
+
+- Keywords tracked:  
+  `"Sustainability Report"`, `"Greenhouse Gas Emissions"`, `"Stakeholder Engagement"`, `"Governance Policies"`, `"Employee Wellbeing"`, `"Human Rights"`, `"Materiality Assessment"`, `"Data Protection"`, `"Privacy Impact Assessment"`, `"Business Responsibility and Sustainability Report"`  
+
+- Scoring is based on presence and frequency of keywords in the report.
+
+---
+
+## 🛠 Features
+
+- Extracts text from PDFs with **OCR fallback** for scanned documents.
+- Tracks BRSR compliance scores per company.
+- Updates a **central SQLite database** automatically.
+- Generates ready-to-use **CSV exports** for analytics.
+- Maintains a log file for each automation run.
+
+---
+
+## 📦 Dependencies
+
+- `pdfplumber`
+- `pandas`
+- `openpyxl`
+- `pytesseract`
+- `rapidfuzz`
+- `Pillow`  
+
+Install with:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 📂 Notes
+
+- Place **all PDFs** in `data/BRSR_Reports/` before running the automation.  
+- The script is idempotent: already processed PDFs are skipped automatically.  
+- CSVs and DB are stored in `data/BRSR_Results/` along with logs and TXT files.  
+
+---
+
+## 🔗 Author
+
+Kaushal Sunil Dwivedi  
+[GitHub](https://github.com/kaushalsunildwivedi)
